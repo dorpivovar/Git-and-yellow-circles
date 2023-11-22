@@ -3,14 +3,15 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtGui import QPainter, QColor
 import sys
 import random
+from UI import Ui_MainWindow
 
 SCREEN_SIZE = [500, 500]
 
 
-class Example(QMainWindow):
+class Example(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi("UI.ui", self)
+        self.setupUi(self)
         self.flag = False
         self.pushButton.clicked.connect(self.draw)
         self.coords = []
@@ -18,7 +19,7 @@ class Example(QMainWindow):
     def draw(self):
         self.figure = 'circle'
         self.size = random.randint(10, 100)
-        self.color = (255, 255, 0)
+        self.color = (random.randint(0,255), random.randint(0,255), random.randint(0,255))
         self.flag = True
         self.update()
 
